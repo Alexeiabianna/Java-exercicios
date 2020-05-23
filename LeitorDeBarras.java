@@ -7,30 +7,36 @@ import java.util.Scanner;
 public class LeitorDeBarras{
     public static void main(String[] args){
         Scanner in = new Scanner(System.in);
-        System.out.println("insira o codigo de baras");
+        System.out.println();
+        System.out.print("insira o codigo de barras: ");
         String codigoBarras = in.next();
         transformaBarra(codigoBarras);
     }
 
     /**
-     * esse metodo imprime um numero de um respectivo codigo de barras
-     * @parm codigoBarra eh o codigo de barras
+     * Esse metodo imprime um número de um respectivo código de barras.
+     * @param codigoBarra é o codigo de barras.
      */
     public static void transformaBarra(String codigoBarra){
-        if(codigoBarra.length() == 32){  // verifica se tem o numero correto de barras 
+        // verifica se tem o numero correto de barras
+        if(codigoBarra.length() == 32){
 
             String zipCode = "";
-            for(int i = 1; i <= 25; i += 5){ // pega o valor numerico do codigo de barras
+            // pega o valor numerico do codigo de barras
+            for(int i = 1; i <= 25; i += 5){
                 zipCode += digitoDaBarra(codigoBarra.substring(i, (i + 5)));
             }
 
             int checkDigit = 0;
-            if(zipCode.length() == 5){ // Verifica se todos os caracteres são barras
-                for(int i = 0; i <= 4; i++){        // Calcula o digito de verificação
+            // Verifica se todos os caracteres são barras
+            if(zipCode.length() == 5){
+                // Calcula o digito de verificação
+                for(int i = 0; i <= 4; i++){
                     checkDigit += Character.getNumericValue(zipCode.charAt(i));
                 }
 
-                if(checkDigit % 10 == 0 ) {       // Testa um caso especial do digito de verificação
+                // Testa um caso especial do digito de verificação
+                if(checkDigit % 10 == 0 ) {
                     checkDigit = 0;
                 }
                 else{
@@ -40,7 +46,8 @@ public class LeitorDeBarras{
                 // pega o valor numerico do digito de verificação dado pelo usuario
                 int verifica = Character.getNumericValue(digitoDaBarra(codigoBarra.substring(26, 31)).charAt(0));
 
-                if(checkDigit == verifica){     // Verifica o digito de verificação
+                // Verifica o digito de verificação
+                if(checkDigit == verifica){
                     System.out.println("Seu codigo numerico é: " + zipCode);
                 }
                 else{
@@ -58,12 +65,13 @@ public class LeitorDeBarras{
     }
 
     /**
-     * Esse metodo atribui um numero a cada 5 barras
-     * @Parm codBarra é a barra que sera transformada em numero
-     * @return é o numero obtido
+     * Esse metodo atribui um numero a cada 5 barras.
+     * @Param codBarra é a barra que será transformada em número.
+     * @return é o numero obtido.
      */
     public static String digitoDaBarra(String codBarra){
-        switch (codBarra) {  // atribui um numero a cada 5 barras
+        // atribui um numero a cada 5 barras
+        switch (codBarra) {
             case "||:::": return "0";
             case ":::||": return "1";
             case "::|:|": return "2";

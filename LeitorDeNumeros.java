@@ -6,18 +6,24 @@ import java.util.Scanner;
 public class LeitorDeNumeros{
     public static void main (String[] args){
         Scanner in = new Scanner(System.in);
-        System.out.print("Insira o Codigo Postal que será transformado em codigo de barras: ");
-        imprimeCodigoBarra(in.nextLine());
+        System.out.println();
+        System.out.print("Insira o Codigo Postal para converter em código de barras: ");
+        imprimeCodigoBarra(in.next());
+
     }
 
     /**
      Esse metodo recebe um valor numérico e imprime um código de barras correspondente.
-     @Parm zipCode é o código postal.
+     @Param zipCode é o código postal.
      */
     public static void imprimeCodigoBarra(String zipCode){
         int checkDigit = 0;
         // verifica se o valor do zipCode é valido
         if(zipCode.length() == 5){
+            System.out.println();
+            System.out.println("Código postal: \n" + zipCode);
+            System.out.println();
+            System.out.println("Código de barras: ");
             // imprime a primeira barra de cotrole
             System.out.print('|');
             // le cada digito
@@ -39,6 +45,7 @@ public class LeitorDeNumeros{
             imprimeDigito((checkDigit + "").charAt(0));
             // imprime a segunda barra de cotrole
             System.out.print('|');
+            System.out.println();
         }
         else{
             System.out.println("Erro: Codigo não tem 5 digitos.");
