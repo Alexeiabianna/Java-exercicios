@@ -14,6 +14,12 @@ public class VolumePiramide {
 
     }
 
+    /**
+     * Imprime o volume de uma pirâmide.
+     * @param double sideLength aresta base pirâmide.
+     * @param double height altura da pirâmide.
+     */
+
     public static double volumePiramide(double sideLength, double height)
     {
         double areaBase = sideLength * sideLength;
